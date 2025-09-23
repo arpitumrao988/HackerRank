@@ -1,3 +1,4 @@
+//optimized solution in c
 int cmp(const void *a,const void *b)
 {
     long x=((long*)a)[0];
@@ -32,4 +33,20 @@ int minimumLoss(int price_count, long* price) {
          }
          free(arr);
          return (int)minloss;
+}
+//brute force solution in c
+int minimumLoss(int price_count, long* price) {
+int min_loss=INT_MAX;
+    for(long int i=0;i<price_count-1;i++)
+    {
+        for(int j=i+1;j<price_count;j++)
+        {
+            if(price[i]-price[j]<0)continue;
+            else if(price[i]-price[j]<min_loss)
+            {
+                min_loss=price[i]-price[j];
+            } 
+        }
+    }
+      return min_loss;
 }
