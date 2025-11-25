@@ -30,3 +30,41 @@ int* jimOrders(int orders_rows, int orders_columns, int** orders, int* result_co
     *result_count = orders_rows;
     return result;
 }
+
+//java
+    public static List<Integer> jimOrders(List<List<Integer>> orders) {
+        List<Integer> l1=new ArrayList<>();
+        List<Integer> result=new ArrayList<>();
+        for(int i=0;i<orders.size();i++)
+        {
+            l1.add(orders.get(i).get(0)+orders.get(i).get(1));
+        }
+        int [] arr=new int[l1.size()];
+        for(int i=0;i<l1.size();i++)
+        {
+            arr[i]=l1.get(i);
+        }
+        Arrays.sort(arr);
+        for(int i=0;i<l1.size();i++)
+        {
+            result.add(linearSearch(l1, arr[i]));
+            l1.set(result.get(i)-1, -1);
+        }
+        return result;
+   
+
+    }
+    public static int linearSearch(List<Integer>l1,int target)
+    {
+        for(int i=0;i<l1.size();i++)
+        {
+            if(l1.get(i)==target)
+            {
+                return i+1;
+            }
+        }
+        return -1;
+    }  
+
+}
+
